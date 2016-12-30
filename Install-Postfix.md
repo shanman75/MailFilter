@@ -21,7 +21,7 @@ Add Configuration
 ```shell
 postconf -e 'myhostname = fructose'
 postconf -e 'mydomain = egarage.net'
-postconf -e 'mydestination = $myhostname, $myhostnome.$mydomain'
+postconf -e 'mydestination = $myhostname, $myhostname.$mydomain'
 postconf -e 'inet_interfaces = all'
 postconf -e 'inet_protocols = all'
 
@@ -75,3 +75,28 @@ postconf -e 'smtpd_tls_protocols=!SSLv2,!SSLv3,!TLSv1,!TLSv1.1'
 postconf -e 'smtpd_tls_mandatory_ciphers = medium'
 postconf -e 'tls_medium_cipherlist = AES128+EECDH:AES128+EDH'
 ```
+
+
+Install Maps
+--------------------------------
+```shell
+scp shanman@source:"\
+/etc/postfix/Makefile \
+/etc/postfix/aliases \
+/etc/postfix/domainmaps \
+/etc/postfix/helo_access \
+/etc/postfix/relay_recipients \
+/etc/postfix/relay_recipients_rejects \
+/etc/postfix/transport \
+/etc/postfix/virtual \
+" /etc/postfix/
+
+scp shanman@source:"\
+/etc/postfix/egarage.net.crt \
+/etc/postfix/egarage.net.privatekey \
+/etc/postfix/godaddyCA.crt \
+" /etc/postfix/
+
+
+```
+ 
