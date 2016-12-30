@@ -1,9 +1,11 @@
 
 Start the install of Postfix
----------------------------
+===========================
 
-```[root@fructose ~]# yum -y install postfix
+```shell
+[root@fructose ~]# yum -y install postfix
 ```
 
-```result	
+```shell
+#!/bin/sh
 ```
