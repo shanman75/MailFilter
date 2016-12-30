@@ -16,4 +16,5 @@ Package 2:postfix-2.10.1-6.el7.x86_64 already installed and latest version
 Nothing to do
 ```
 
+```shell
 ```
