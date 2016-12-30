@@ -99,4 +99,11 @@ scp shanman@source:"\
 
 
 ```
+
+Make Maps
+---------------------------------------
+```shell
+cd /etc/postfix/
+make
+```
  
