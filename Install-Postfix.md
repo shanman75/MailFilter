@@ -3,7 +3,7 @@ Start the install of Postfix
 ===========================
 
 ```shell
-[root@fructose ~]# yum -y install postfix
+[root@fructose ~]# yum -y install postfix pypolicyd-spf postgrey
 ```
 
 ```shell
@@ -41,10 +41,10 @@ postconf -e 'smtpd_sender_restrictions = reject_non_fqdn_sender, reject_unknown_
 # HELO restrictions
 postconf -e 'smtpd_delay_reject = yes'
 postconf -e 'smtpd_helo_required = yes'
-postconf -e 'smtpd_recipient_restrictions = permit_mynetworks, check_recipient_access hash:/etc/postfix/relay_recipients_rejects, reject_unauth_pipelining, reject_unauth_destination, reject_non_fqdn_recipient, check_policy_service unix:private/spfpolicy, check_policy_service unix:postgrey/socket'
+	
 
 # Add AMAVISD-NEW filter
-postconf -e 'content-filter = smtp-amavis:[127.0.0.1]:10024'
+postconf -e 'content_filter = smtp-amavis:[127.0.0.1]:10024'
 
 
 # Add hard reject messages for bad relay or local recipient
@@ -74,6 +74,12 @@ postconf -e 'smtpd_tls_mandatory_protocols = !SSLv2,!SSLv3,!TLSv1,!TLSv1.1'
 postconf -e 'smtpd_tls_protocols=!SSLv2,!SSLv3,!TLSv1,!TLSv1.1'
 postconf -e 'smtpd_tls_mandatory_ciphers = medium'
 postconf -e 'tls_medium_cipherlist = AES128+EECDH:AES128+EDH'
+```
+
+Enable Postgrey
+```shell
+systemctl start postgrey
+systemctl enable postgrey
 ```
 
 
@@ -106,4 +112,13 @@ Make Maps
 cd /etc/postfix/
 make
 ```
- 
+
+edit /etc/postfix/master.cf
+```shell
+policyd-spf  unix  -       n       n       -       0       spawn
+                   user=nobody argv=/usr/libexec/postfix/policyd-spf
+``` 
+
+```shell
+postfix reload
+```
