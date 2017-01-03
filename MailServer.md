@@ -1,6 +1,6 @@
 # MailFilter
 
-1. Install ClamAV
+1. Install [ClamAV](Install-ClamAV.md)
 2. Install Postfix
 3. Install Amavisd
 
