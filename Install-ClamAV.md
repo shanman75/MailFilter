@@ -2,6 +2,11 @@
 Install ClamAV
 ===========================
 
+AWS Only
+```shell
+sudo amazon-linux-extras install epel
+```
+Continue:
 ```shell
 yum --enablerepo=epel -y install clamav clamav-update
 sed -i -e "s/^Example/#Example/" /etc/freshclam.conf
