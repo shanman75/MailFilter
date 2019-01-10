@@ -17,7 +17,9 @@ smtpd_recipient_restrictions =
         reject_unauth_destination,
         reject_non_fqdn_recipient,
 #SPF check
-        check_policy_service unix:private/spfpolicy,
+#        check_policy_service unix:private/spfpolicy,
+        check_policy_service unix:private/policyd-spf,
+        
 #greylist
 #        check_policy_service inet:127.0.0.1:10023,
         check_policy_service unix:/var/spool/postfix/postgrey/socket
