@@ -75,6 +75,9 @@ $policy_bank{'EXTERNAL'} = {
   spam_admin_maps  => ["spamcop\@$mydomain"],
 };
 
+#COMMENT OUT
+#@local_domains_maps = ( [".$mydomain"] );  # list of all local domains
+read_hash(\%local_domains, '/etc/postfix/domainmaps');
 
 
 $sa_tag_level_deflt  = 0.0;  # add spam info headers if at, or above that level
